@@ -5,7 +5,7 @@ import { videoIds, getCurrentHour } from '../../utils/hourly'
 import classes from './Main.module.css'
 
 const Main = () => {
-  const [paused, setPaused] = useState<boolean>(false)
+  const [paused, setPaused] = useState<boolean>(true)
   const [hour, setHour] = useState<string>('6 AM')
   const [mode, setMode] = useState<Mode>(Mode.realtime)
 
