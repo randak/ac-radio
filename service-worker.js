@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/ac-radio/precache-manifest.09e14ed46251a4b8bc9ab0d2c1d10b56.js"
+  "/ac-radio/precache-manifest.3a6498fe09be5560da5a57b2ae6644cd.js"
 );
 
 self.addEventListener('message', (event) => {
