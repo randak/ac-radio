@@ -1,0 +1,23 @@
+.modePicker {
+  background-color: white;
+  border-radius: 100px;
+  padding: 0.5rem;
+  border: none;
+}
+
+.mode {
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.mode.selected {
+  background-color: var(--primary);
+  border-radius: 100px;
+  color: white;
+}
+
+.radio {
+  visibility: hidden;
+  position: absolute;
+}
