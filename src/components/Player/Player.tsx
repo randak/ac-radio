@@ -27,8 +27,6 @@ const Player = ({ videoId, paused }: PlayerProps) => {
   }, [paused, video])
 
   const _onReady = (event: PlayerEvent): void => {
-    event.target.playVideo()
-    console.log("ready")
     setVideo(() => event.target)
   }
 
