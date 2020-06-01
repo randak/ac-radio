@@ -1,4 +1,57 @@
-export const videoIds: Record<string, string> = {
+export type HourType = '6 AM'
+ | '7 AM'
+ | '8 AM'
+ | '9 AM'
+ | '10 AM'
+ | '11 AM'
+ | '12 PM'
+ | '1 PM'
+ | '2 PM'
+ | '3 PM'
+ | '4 PM'
+ | '5 PM'
+ | '6 PM'
+ | '7 PM'
+ | '8 PM'
+ | '9 PM'
+ | '10 PM'
+ | '11 PM'
+ | '12 AM'
+ | '1 AM'
+ | '2 AM'
+ | '3 AM'
+ | '4 AM'
+ | '5 AM'
+
+
+type VideoIdRecord = {
+  '6 AM': string
+  '7 AM': string
+  '8 AM': string
+  '9 AM': string
+  '10 AM': string
+  '11 AM': string
+  '12 PM': string
+  '1 PM': string
+  '2 PM': string
+  '3 PM': string
+  '4 PM': string
+  '5 PM': string
+  '6 PM': string
+  '7 PM': string
+  '8 PM': string
+  '9 PM': string
+  '10 PM': string
+  '11 PM': string
+  '12 AM': string
+  '1 AM': string
+  '2 AM': string
+  '3 AM': string
+  '4 AM': string
+  '5 AM': string
+}
+
+const acnhVideoIds: VideoIdRecord = {
   '6 AM': 'FqUlCT47ucE',
   '7 AM': 'y6dF4h5z0ik',
   '8 AM': 'YhpYzNZkg8E',
@@ -25,6 +78,43 @@ export const videoIds: Record<string, string> = {
   '5 AM': 'dJwg-mWj7xY',
 }
 
-export const hours = Object.keys(videoIds)
+const acnlVideoIds: VideoIdRecord = {
+  '6 AM': 'mWa-tiP3a_o',
+  '7 AM': '-CtfRww-2YM',
+  '8 AM': 'OHxpIqpAjz0',
+  '9 AM': 'T9ieUkNOEf4',
+  '10 AM': '25wXOGbmWOc',
+  '11 AM': 'TPFZhtkP7M0',
+  '12 PM': 'vZVS2FtVWHA',
+  '1 PM': 'G3rtW1G2Ixg',
+  '2 PM': 'LiXoQXCFhF8',
+  '3 PM': 'CM58GBw4JkE',
+  '4 PM': 'wqaKOCbeXmY',
+  '5 PM': 'HXG9zU2Lb6g',
+  '6 PM': 'iLSwc8wgJeo',
+  '7 PM': 'rmtKHo7GB64',
+  '8 PM': 'DhrsQO9Pkbs',
+  '9 PM': 'Fl4M-a3eBnw',
+  '10 PM': 'tEWFq1_NVSg',
+  '11 PM': 'ytHqYVbuLt4',
+  '12 AM': 'A_00O4KWBxY',
+  '1 AM': 'uX2NxSN49Tg',
+  '2 AM': 'LAioanQMG_A',
+  '3 AM': '_pCBzrFnTlw',
+  '4 AM': 'eSfQrWXD94A',
+  '5 AM': 'zQLvrhUXwtE',
+}
 
-export const getCurrentHour = () => (new Date()).toLocaleString('en-US', { hour: 'numeric', hour12: true })
+export enum VideoSet {
+  NewHorizons = 'acnh',
+  NewLeaf = 'acnl',
+}
+
+export const videoIds: Record<VideoSet, VideoIdRecord> = {
+  [VideoSet.NewHorizons]: acnhVideoIds,
+  [VideoSet.NewLeaf]: acnlVideoIds
+}
+
+export const hours = Object.keys(acnhVideoIds)
+
+export const getCurrentHour = () => (new Date()).toLocaleString('en-US', { hour: 'numeric', hour12: true }) as HourType

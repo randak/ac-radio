@@ -1,5 +1,6 @@
 export { HourSelect } from './HourSelect'
 export { ModePicker, Mode } from './ModePicker'
+export { MusicPicker } from './MusicPicker'
 export { PlayButton } from './PlayButton'
 export { PlayBar } from './PlayBar'
 export { Player } from './Player'

@@ -3,17 +3,18 @@ import { HourSelect } from '../HourSelect'
 import { PlayButton } from '../PlayButton'
 import { Mode } from '../ModePicker'
 import classes from './PlayBar.module.css'
+import { HourType } from '../../utils/hourly'
 
 interface PlayBarProps {
-  hour: string
+  hour: HourType
   mode: Mode
   onPlayClick: () => void
-  setHour: (hour: string) => void
+  setHour: (hour: HourType) => void
   paused: boolean
 }
 
 const PlayBar = ({ hour, mode, onPlayClick, setHour, paused }: PlayBarProps) => {
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => setHour(event.target.value)
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => setHour(event.target.value as HourType)
 
   return (
     <div className={classes.playbar}>

@@ -8,5 +8,11 @@
   color: var(--primary);
   padding: 1rem 2rem;
   margin: 1rem;
-  width: 50%;
+  width: 80%;
+}
+
+@media screen and (min-width: 900px) {
+  .playbar {
+    width: 50%;
+  }
 }

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import DocumentTitle from 'react-document-title'
-import { PlayBar, ModePicker, Mode, Player } from '../../components'
-import { videoIds, getCurrentHour } from '../../utils/hourly'
+import { PlayBar, ModePicker, Mode, Player, MusicPicker } from '../../components'
+import { videoIds, getCurrentHour, VideoSet, HourType } from '../../utils/hourly'
 import classes from './Main.module.css'
 
 const Main = () => {
   const [paused, setPaused] = useState<boolean>(true)
-  const [hour, setHour] = useState<string>('6 AM')
+  const [hour, setHour] = useState<HourType>('6 AM')
   const [mode, setMode] = useState<Mode>(Mode.realtime)
+  const [videoSet, setVideoSet] = useState<VideoSet>(VideoSet.NewHorizons)
 
   useEffect(() => {
     const setRealtimeHour = () => {
@@ -32,11 +33,12 @@ const Main = () => {
           Animal Crossing Radio
         </h1>
         <div className={classes.controls}>
-          <ModePicker value={mode} onChange={event => setMode(event.target.value)} />
+          <MusicPicker value={videoSet} setValue={setVideoSet} />
+          <ModePicker value={mode} setValue={setMode} />
         </div>
         <main className={classes.main}>
           <PlayBar hour={hour} mode={mode} onPlayClick={onPlayClick} setHour={setHour} paused={paused} />
-          <Player videoId={videoIds[hour]} paused={paused} />
+          <Player videoId={videoIds[videoSet][hour]} paused={paused} />
         </main>
       </>
     </DocumentTitle>

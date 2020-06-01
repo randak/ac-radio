@@ -1,25 +1,26 @@
 import React from 'react'
-import cx from 'classnames'
-import classes from './ModePicker.module.css'
+import { Picker, Option } from '../Picker'
 
 export enum Mode {
   realtime = 'realtime',
   choose = 'choose'
 }
 
-const ModePicker = ({ onChange, value }: { onChange: (event: any) => void, value: Mode }) => (
-  <fieldset className={classes.modePicker}>
-    <label className={cx(classes.mode, { [classes.selected]: Mode.realtime === value })}>
-      <input className={classes.radio} type="radio" name="mode" value={Mode.realtime} onClick={onChange} checked={Mode.realtime === value} />
-      {' '}
-      Realtime
-    </label>
-    <label className={cx(classes.mode, { [classes.selected]: Mode.choose === value })}>
-      <input className={classes.radio} type="radio" name="mode" value={Mode.choose} onClick={onChange} checked={Mode.choose === value} />
-      {' '}
-      Choose Track
-    </label>
-  </fieldset>
-)
+interface ModePickerProps {
+  value: Mode
+  setValue: (mode: Mode) => void
+}
+
+const ModePicker = ({ value, setValue }: ModePickerProps) => {
+  const onClick = (event: React.MouseEvent<HTMLInputElement, MouseEvent>) =>
+    setValue((event.target as HTMLInputElement).value as Mode)
+
+  return (
+    <Picker>
+      <Option onClick={onClick} value={Mode.realtime} label="Realtime" checked={Mode.realtime === value} />
+      <Option onClick={onClick} value={Mode.choose} label="Choose Track" checked={Mode.choose === value} />
+    </Picker>
+  )
+}
 
 export default ModePicker

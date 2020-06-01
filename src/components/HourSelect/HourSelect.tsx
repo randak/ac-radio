@@ -1,8 +1,14 @@
 import React from 'react'
 import classes from './HourSelect.module.css'
-import { hours } from '../../utils/hourly'
+import { hours, HourType } from '../../utils/hourly'
 
-const HourSelect = ({ onChange, value, disabled }: { onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void, value: string, disabled: boolean }) => (
+interface HourSelectProps {
+  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
+  value: HourType
+  disabled: boolean
+}
+
+const HourSelect = ({ onChange, value, disabled }: HourSelectProps) => (
   <select className={classes.select} value={value} onChange={onChange} disabled={disabled}>
     {hours.map(time => (
       <option value={time}>{time}</option>
