@@ -11,7 +11,7 @@ interface HourSelectProps {
 const HourSelect = ({ onChange, value, disabled }: HourSelectProps) => (
   <select className={classes.select} value={value} onChange={onChange} disabled={disabled}>
     {hours.map(time => (
-      <option value={time}>{time}</option>
+      <option key={time} value={time}>{time}</option>
     ))}
   </select>
 )

@@ -8,13 +8,13 @@ interface MusicPickerProps {
 }
 
 const MusicPicker = ({ value, setValue }: MusicPickerProps) => {
-  const onClick = (event: React.MouseEvent<HTMLInputElement, MouseEvent>) =>
-    setValue((event.target as HTMLInputElement).value as VideoSet)
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setValue(event.target.value as VideoSet)
 
   return (
     <Picker>
-      <Option onClick={onClick} value={VideoSet.NewLeaf} label="New Leaf" checked={VideoSet.NewLeaf === value} />
-      <Option onClick={onClick} value={VideoSet.NewHorizons} label="New Horizons" checked={VideoSet.NewHorizons === value} />
+      <Option onChange={onChange} value={VideoSet.NewLeaf} label="New Leaf" checked={VideoSet.NewLeaf === value} />
+      <Option onChange={onChange} value={VideoSet.NewHorizons} label="New Horizons" checked={VideoSet.NewHorizons === value} />
     </Picker>
   )
 }

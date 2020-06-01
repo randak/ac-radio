@@ -12,13 +12,13 @@ interface ModePickerProps {
 }
 
 const ModePicker = ({ value, setValue }: ModePickerProps) => {
-  const onClick = (event: React.MouseEvent<HTMLInputElement, MouseEvent>) =>
-    setValue((event.target as HTMLInputElement).value as Mode)
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setValue(event.target.value as Mode)
 
   return (
     <Picker>
-      <Option onClick={onClick} value={Mode.realtime} label="Realtime" checked={Mode.realtime === value} />
-      <Option onClick={onClick} value={Mode.choose} label="Choose Track" checked={Mode.choose === value} />
+      <Option onChange={onChange} value={Mode.realtime} label="Realtime" checked={Mode.realtime === value} />
+      <Option onChange={onChange} value={Mode.choose} label="Choose Track" checked={Mode.choose === value} />
     </Picker>
   )
 }

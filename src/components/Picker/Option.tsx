@@ -1,17 +1,17 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import cx from 'classnames'
 import classes from './Picker.module.css'
 
 interface OptionProps {
-  onClick: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   checked: boolean
   value: string
   label: string
 }
 
-const Option = ({ onClick, checked, value, label }: OptionProps) => (
+const Option = ({ onChange, checked, value, label }: OptionProps) => (
   <label className={cx(classes.option, { [classes.selected]: checked })}>
-    <input className={classes.radio} type="radio" name="mode" value={value} onClick={onClick} checked={checked} />
+    <input className={classes.radio} type="radio" name="mode" value={value} onChange={onChange} checked={checked} />
     {` ${label}`}
   </label>
 )
