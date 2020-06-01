@@ -13,6 +13,7 @@ const MusicPicker = ({ value, setValue }: MusicPickerProps) => {
 
   return (
     <Picker>
+      <Option onChange={onChange} value={VideoSet.CityFolk} label="City Folk" checked={VideoSet.CityFolk === value} />
       <Option onChange={onChange} value={VideoSet.NewLeaf} label="New Leaf" checked={VideoSet.NewLeaf === value} />
       <Option onChange={onChange} value={VideoSet.NewHorizons} label="New Horizons" checked={VideoSet.NewHorizons === value} />
     </Picker>

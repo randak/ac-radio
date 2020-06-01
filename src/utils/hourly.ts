@@ -105,14 +105,43 @@ const acnlVideoIds: VideoIdRecord = {
   '5 AM': 'zQLvrhUXwtE',
 }
 
+const accfVideoIds: VideoIdRecord = {
+  '6 AM': 'z2QAAJeHF2s',
+  '7 AM': 'cQ2UTZ-S9Q8',
+  '8 AM': 'C7X6BLiB2Ec',
+  '9 AM': '3UpdJMSAP10',
+  '10 AM': 'CYk1CtYzz0o',
+  '11 AM': 'FTpvuY4Y1AE',
+  '12 PM': 'VhzGugcr_aQ',
+  '1 PM': '2bwO3lZkTHs',
+  '2 PM': 'FivBqy6VG4w',
+  '3 PM': '1Oya4xMfRfw',
+  '4 PM': 'K6KkeYwAFHE',
+  '5 PM': 'syxR6VzzAqQ',
+  '6 PM': 'yx_BIFCFpaA',
+  '7 PM': 'eGl1CzBxtRQ',
+  '8 PM': 'mFOLcD_w5sc',
+  '9 PM': 'Riz2ON11Vso',
+  '10 PM': 'lOdQfelEVaY',
+  '11 PM': 'ouBKNNeGbh8',
+  '12 AM': 'G3IzATmzA3o',
+  '1 AM': 'IUtCHa6RgMQ',
+  '2 AM': '9DwrEx-69PM',
+  '3 AM': 'lSqkG3QEsRw',
+  '4 AM': 'jSUBf13bKOU',
+  '5 AM': 'VBOBHSdoHL8',
+}
+
 export enum VideoSet {
   NewHorizons = 'acnh',
   NewLeaf = 'acnl',
+  CityFolk = 'accf',
 }
 
 export const videoIds: Record<VideoSet, VideoIdRecord> = {
   [VideoSet.NewHorizons]: acnhVideoIds,
-  [VideoSet.NewLeaf]: acnlVideoIds
+  [VideoSet.NewLeaf]: acnlVideoIds,
+  [VideoSet.CityFolk]: accfVideoIds,
 }
 
 export const hours = Object.keys(acnhVideoIds)
