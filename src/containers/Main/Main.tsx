@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react'
+import  createPersistedState from 'use-persisted-state'
 import DocumentTitle from 'react-document-title'
 import { PlayBar, ModePicker, Mode, Player, MusicPicker } from '../../components'
 import { videoIds, getCurrentHour, VideoSet, HourType } from '../../utils/hourly'
 import classes from './Main.module.css'
 
+const useHourState = createPersistedState('hour')
+const useModeState = createPersistedState('mode')
+const useVideoSetState = createPersistedState('videoSet')
+
 const Main = () => {
   const [paused, setPaused] = useState<boolean>(true)
-  const [hour, setHour] = useState<HourType>('6 AM')
-  const [mode, setMode] = useState<Mode>(Mode.realtime)
-  const [videoSet, setVideoSet] = useState<VideoSet>(VideoSet.NewHorizons)
+  const [hour, setHour] = useHourState<HourType>('6 AM')
+  const [mode, setMode] = useModeState<Mode>(Mode.realtime)
+  const [videoSet, setVideoSet] = useVideoSetState<VideoSet>(VideoSet.NewHorizons)
 
   useEffect(() => {
     const setRealtimeHour = () => {
