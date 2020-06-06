@@ -10,7 +10,10 @@ const useModeState = createPersistedState('mode')
 const useVideoSetState = createPersistedState('videoSet')
 
 const Main = () => {
-  const [paused, setPaused] = useState<boolean>(true)
+  // Represents the app's paused state
+  const [appPaused, setAppPaused] = useState<boolean>(true)
+  // Represents the Youtube player's paused state, which can be triggered outside of the app (e.g. Apple touch bar)
+  const [playerPaused, setPlayerPaused] = useState<boolean>(true)
   const [hour, setHour] = useHourState<HourType>('6 AM')
   const [mode, setMode] = useModeState<Mode>(Mode.realtime)
   const [videoSet, setVideoSet] = useVideoSetState<VideoSet>(VideoSet.NewHorizons)
@@ -29,7 +32,7 @@ const Main = () => {
     return () => clearInterval(intervalId);
   }, [setHour, mode]);
 
-  const onPlayClick = () => setPaused(prev => !prev)
+  const onPlayClick = () => setAppPaused(prev => !prev)
 
   return (
     <DocumentTitle title={`${hour} - Animal Crossing Radio`}>
@@ -42,8 +45,13 @@ const Main = () => {
           <ModePicker value={mode} setValue={setMode} />
         </div>
         <main className={classes.main}>
-          <PlayBar hour={hour} mode={mode} onPlayClick={onPlayClick} setHour={setHour} paused={paused} />
-          <Player videoId={videoIds[videoSet][hour]} paused={paused} />
+          <PlayBar hour={hour} mode={mode} onPlayClick={onPlayClick} setHour={setHour} paused={playerPaused} />
+          <Player
+            videoId={videoIds[videoSet][hour]}
+            appPaused={appPaused}
+            playerPaused={playerPaused}
+            setPlayerPaused={setPlayerPaused}
+          />
         </main>
       </>
     </DocumentTitle>

@@ -10,21 +10,23 @@ type PlayerEvent = {
 
 interface PlayerProps {
   videoId: string
-  paused: boolean
+  appPaused: boolean
+  playerPaused: boolean
+  setPlayerPaused: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Player = ({ videoId, paused }: PlayerProps) => {
+const Player = ({ videoId, appPaused, playerPaused, setPlayerPaused }: PlayerProps) => {
   const [video, setVideo] = useState<YouTubePlayer>()
 
   useEffect(() => {
     if (video) {
-      if (paused) {
+      if (appPaused) {
         video.pauseVideo()
       } else {
         video.playVideo()
       }
     }
-  }, [paused, video])
+  }, [appPaused, video])
 
   const _onReady = (event: PlayerEvent): void => {
     setVideo(() => event.target)
@@ -33,14 +35,27 @@ const Player = ({ videoId, paused }: PlayerProps) => {
   const _onEnd = (event: PlayerEvent): void => event.target.playVideo()
 
   const _onStateChange = (event: PlayerEvent): void => {
-    if (event.data === YouTube.PlayerState.PAUSED && !paused) {
-      event.target.playVideo()
+    if (event.data === YouTube.PlayerState.UNSTARTED) {
+      if (appPaused && !playerPaused) {
+        event.target.pauseVideo()
+      } else if (!appPaused && playerPaused) {
+        event.target.playVideo()
+      }
+    } else if (event.data === YouTube.PlayerState.PAUSED) {
+      setPlayerPaused(() => true)
+    } else if (event.data === YouTube.PlayerState.PLAYING) {
+      setPlayerPaused(() => false)
     }
   }
 
   return (
     <div className={classes.player}>
-      <YouTube videoId={videoId} onReady={_onReady} onEnd={_onEnd} onStateChange={_onStateChange} />
+      <YouTube
+        videoId={videoId}
+        onReady={_onReady}
+        onEnd={_onEnd}
+        onStateChange={_onStateChange}
+      />
     </div>
   )
 }
